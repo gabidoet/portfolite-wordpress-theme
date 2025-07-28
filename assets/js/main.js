@@ -14,6 +14,7 @@
         initSearchModal();
         initBackToTop();
         initSmoothScrolling();
+        initDarkMode();
     });
 
     /**
@@ -140,5 +141,25 @@
         });
     }
 
-})();
+    /**
+     * Dark Mode Toggle
+     */
+    function initDarkMode() {
+        const darkModeToggle = document.querySelector('.dark-mode-toggle');
+        
+        if (!darkModeToggle) return;
 
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('portfolite-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        darkModeToggle.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('portfolite-theme', newTheme);
+        });
+    }
+
+})();
