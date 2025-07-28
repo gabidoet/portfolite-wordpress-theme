@@ -226,8 +226,8 @@ require_once PORTFOLITE_THEME_DIR . '/inc/portfolio-post-type.php';
 require_once PORTFOLITE_THEME_DIR . '/inc/block-patterns.php';
 require_once PORTFOLITE_THEME_DIR . '/inc/block-styles.php';
 
-// WooCommerce support
-if ( class_exists( 'WooCommerce' ) ) {
+// WooCommerce support - only include if WooCommerce is active and file exists
+if ( class_exists( 'WooCommerce' ) && file_exists( PORTFOLITE_THEME_DIR . '/inc/woocommerce.php' ) ) {
     require_once PORTFOLITE_THEME_DIR . '/inc/woocommerce.php';
 }
 
@@ -340,4 +340,3 @@ remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
 remove_action( 'wp_head', 'rsd_link' );
 remove_action( 'wp_head', 'wlwmanifest_link' );
 remove_action( 'wp_head', 'wp_shortlink_wp_head' );
-
